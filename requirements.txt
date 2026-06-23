@@ -6,4 +6,4 @@ Pyrogram
 PySocks
 pytest
 pytz
-tortoise-orm
+tortoise-orm==1.1.7

@@ -6,7 +6,6 @@ from aiogram.types import ParseMode
 
 from config import *
 from database import initialize_database
-from tortoise import run_async
 
 
 
@@ -25,6 +24,7 @@ dp = Dispatcher(
 
 
 async def on_startup(dispatcher):
+    await initialize_database()
     asyncio.create_task(manage_active_giveaways())
 
 
@@ -34,5 +34,4 @@ if __name__ == '__main__':
     from handlers import dp, manage_active_giveaways
 
 
-    run_async(initialize_database())
     executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
