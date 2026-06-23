@@ -16,7 +16,8 @@ async def initialize_database():
                     'database.models.temporary_users',
                 ]
         },
-        timezone=str(timezone_info.zone)
+        timezone=str(timezone_info.zone),
+        _enable_global_fallback=True
     )
 
     await Tortoise.generate_schemas()
