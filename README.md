@@ -65,6 +65,35 @@ Config (path - config/py_config.py):
 ```bash
   python app.py
 ```
+
+## Запуск как systemd-сервис (Linux)
+
+Чтобы бот работал постоянно и сам перезапускался после падений или ребута сервера, используйте systemd-юнит из `deploy/`.
+
+Код бота должен лежать на сервере в `/var/giveaway_bot`. Установка:
+```bash
+sudo bash deploy/install.sh
+```
+
+Скрипт `deploy/install.sh`:
+- создаёт системного пользователя `giveaway` (без shell, без root-прав);
+- создаёт venv в `/var/giveaway_bot/venv` и ставит зависимости из `requirements.txt`;
+- копирует `deploy/giveaway-bot.service` в `/etc/systemd/system/`;
+- включает автозапуск и запускает сервис.
+
+Управление сервисом:
+```bash
+sudo systemctl status giveaway-bot.service   # статус
+sudo systemctl restart giveaway-bot.service  # перезапуск
+sudo systemctl stop giveaway-bot.service     # остановка
+journalctl -u giveaway-bot.service -f        # логи в реальном времени
+```
+
+После изменения кода бота на сервере:
+```bash
+sudo systemctl restart giveaway-bot.service
+```
+
 ## Support
 
 TG - https://t.me/wizard_studios

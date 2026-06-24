@@ -1,0 +1,23 @@
+[Unit]
+Description=GiveawayBot Telegram bot
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=giveaway
+Group=giveaway
+WorkingDirectory=/var/giveaway_bot
+ExecStart=/var/giveaway_bot/venv/bin/python /var/giveaway_bot/app.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
