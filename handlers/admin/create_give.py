@@ -256,7 +256,7 @@ async def ask_about_edit_give_date(jam: types.CallbackQuery, state: FSMContext):
             await state.update_data(give_captcha=False)
 
             await jam.message.edit_text(
-                'Введіть час завершення розіграшу: nn<code>Наприклад: 19:23</code>',
+                'Введіть час завершення розіграшу: \n\n<code>Наприклад: 19:23</code>',
                 reply_markup=kb_admin_cancel_action
             )
             await CreateGiveStates.get_time.set()
@@ -279,7 +279,7 @@ async def ask_about_captcha_for_give(jam: types.CallbackQuery, state: FSMContext
 
 
     await jam.message.edit_text(
-        'Введіть час завершення розіграшу: nn<code>Наприклад: 19:23</code>',
+        'Введіть час завершення розіграшу: \n\n<code>Наприклад: 19:23</code>',
         reply_markup=kb_admin_cancel_action
     )
     await CreateGiveStates.get_time.set()

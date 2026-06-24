@@ -7,3 +7,4 @@ PySocks
 pytest
 pytz
 tortoise-orm==1.1.7
+tzdata
